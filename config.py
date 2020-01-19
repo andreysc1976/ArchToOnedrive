@@ -1,0 +1,1 @@
+DIRS = ['/home/andreysc/castrol/','/home/andreysc/heroes/']

@@ -2,14 +2,21 @@ import os
 import sqlite3
 import datetime
 
+
 class archdb(object):
-    def __init__(self,dbname):
+    def __init__(self,dbname,dbtype):
         self.dbname = dbname
-        if os.path.exists(dbname)!=True:
-            conn = sqlite3.connect(dbname)
-            cursor = conn.cursor()
-            cursor.execute('CREATE TABLE files (filepath text primary key,crdate datetime,size integer) ')
-            print('Create new db')
+        self.dbtype = dbtype
+
+        if dbtype=='sqlite':
+            if os.path.exists(dbname)!=True:
+                conn = sqlite3.connect(dbname)
+                cursor = conn.cursor()
+                cursor.execute('CREATE TABLE files (filepath text primary key,crdate datetime,size integer) ')
+                print('Create new db')
+        elif dbtype=='json':
+            if os.path.exists(dbname)!=True:
+                a=1
 
     def inserttodb(self,filename):
         #pfilename = filename.replace('/','#')
